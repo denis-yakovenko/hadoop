@@ -2,7 +2,7 @@
 out
 target
 *.iml
+input
 output
-inputSJWH/
-outputSJWH/
-/src/main/java/hadoop/FootBallNationalityCount.java
+inputSJWH
+outputSJWH
