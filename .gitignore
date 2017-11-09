@@ -1,0 +1,8 @@
+.idea
+out
+target
+*.iml
+output
+inputSJWH/
+outputSJWH/
+/src/main/java/hadoop/FootBallNationalityCount.java
