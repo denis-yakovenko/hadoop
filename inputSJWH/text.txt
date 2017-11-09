@@ -1,0 +1,5 @@
+dog,cat
+My dog is not a cat
+My dog is not a cat
+my dog is not a giraffe
+my dog is my freind!

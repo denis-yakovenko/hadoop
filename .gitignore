@@ -2,7 +2,7 @@
 out
 target
 *.iml
-input
-output
-inputSJWH
-outputSJWH
+#input
+#output
+#inputSJWH
+#outputSJWH
