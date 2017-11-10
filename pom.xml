@@ -62,7 +62,7 @@
                     </execution>
                 </executions>
             </plugin>-->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.7.1</version>
@@ -74,7 +74,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -84,7 +84,7 @@
                         <manifest>
                             <!--<addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>-->
-                            <mainClass>hadoop.WordCount</mainClass>
+                            <mainClass>hadoop.FootBall</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
