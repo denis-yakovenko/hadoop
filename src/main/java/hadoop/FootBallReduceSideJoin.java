@@ -77,7 +77,7 @@ public class FootBallReduceSideJoin {
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         FileSystem hdfs = FileSystem.get(conf);
-        Path outDir = new Path("output");
+        Path outDir = new Path("outputRSJ");
         hdfs.delete(outDir, true);
         if (hdfs.exists(outDir))
             return;
