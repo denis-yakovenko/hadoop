@@ -10,12 +10,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <junit.version>4.12</junit.version>
-        <mrunit.version>1.1.0</mrunit.version>
         <hadoop.version>2.8.2</hadoop.version>
-        <hadoop.core.version>1.2.1</hadoop.core.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <spark.version>2.2.0</spark.version>
+        <!--<hadoop.core.version>1.2.1</hadoop.core.version>-->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
     <dependencies>
         <!--<dependency>
@@ -37,15 +36,25 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <version>4.12</version>
         </dependency>
         <!--https://cwiki.apache.org/confluence/display/MRUNIT/MRUnit+Tutorial-->
         <dependency>
             <groupId>org.apache.mrunit</groupId>
             <artifactId>mrunit</artifactId>
-            <version>${mrunit.version}</version>
+            <version>1.1.0</version>
             <classifier>hadoop2</classifier>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>${spark.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -88,7 +97,7 @@
                         <manifest>
                             <!--<addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>-->
-                            <mainClass>hadoop.FootBall</mainClass>
+                            <mainClass>hadoop.SparkDataSetSample</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -53,7 +53,7 @@ public class FootBallNationalityCount extends Job {
         System.out.println("DONE WRITING " + infile);
     }
 
-    private static class WordCountMapper extends Mapper<Text, Text, Text, IntWritable> {
+    static class WordCountMapper extends Mapper<Text, Text, Text, IntWritable> {
 
         private static final IntWritable ONE = new IntWritable(1);
 
@@ -66,7 +66,7 @@ public class FootBallNationalityCount extends Job {
         }
     }
 
-    private static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+     static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
         private IntWritable result = new IntWritable();
 
         public void reduce(Text key, Iterable<IntWritable> values,
@@ -81,7 +81,7 @@ public class FootBallNationalityCount extends Job {
         }
     }
 
-    private static class HeaderInputFormat extends FileInputFormat<Text, Text> {
+     static class HeaderInputFormat extends FileInputFormat<Text, Text> {
         Text header;
         Set<String> wordsToCount = new HashSet<>();
 

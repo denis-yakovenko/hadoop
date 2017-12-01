@@ -23,7 +23,7 @@ public class FootBallReduceSideJoin {
     private static String country;
     private static String countryWins;
 
-    private static class FootballMembersMapper extends Mapper<Object, Text, TextPair, Text> {
+     static class FootballMembersMapper extends Mapper<Object, Text, TextPair, Text> {
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             if (value.toString().equals("name,club,age,position,position_cat,market_value,page_views,fpl_value,fpl_sel,fpl_points,region,nationality,new_foreign,age_cat,club_id,big_club,new_signing"))
@@ -36,7 +36,7 @@ public class FootBallReduceSideJoin {
 
     }
 
-    private static class FootballCountriesMapper extends Mapper<Object, Text, TextPair, Text> {
+     static class FootballCountriesMapper extends Mapper<Object, Text, TextPair, Text> {
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             fieldValues = value.toString().split(",");
@@ -49,7 +49,7 @@ public class FootBallReduceSideJoin {
 
     }
 
-    private static class IntSumReducer extends Reducer<TextPair, Text, Text, Text> {
+     static class IntSumReducer extends Reducer<TextPair, Text, Text, Text> {
         private Text result = new Text();
 
         public void reduce(TextPair key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -67,7 +67,7 @@ public class FootBallReduceSideJoin {
         }
     }
 
-    private static class KeyPartitioner extends Partitioner<TextPair, Text> {
+     static class KeyPartitioner extends Partitioner<TextPair, Text> {
         @Override
         public int getPartition(TextPair key, Text value, int numReduceTasks) {
             return (key.getFirst().hashCode() & Integer.MAX_VALUE) % numReduceTasks;
