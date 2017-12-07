@@ -9,11 +9,11 @@ import scala.Tuple2;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class SparkDataSetSample {
+public class SparkRDD {
     public static void main(String[] args) throws URISyntaxException, IOException {
         SparkSession spark = SparkSession
                 .builder()
-                .appName("SparkDataSetSample")
+                .appName("SparkRDD")
                 .master("local[2]")
                 .getOrCreate();
         FileSystem fs = FileSystem.get(spark.sparkContext().hadoopConfiguration());
