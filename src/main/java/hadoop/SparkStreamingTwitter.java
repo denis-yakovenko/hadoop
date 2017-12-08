@@ -25,9 +25,10 @@ public class SparkStreamingTwitter {
         Twitter twitter = tf.getInstance();
         Authorization twitterAuth = AuthorizationFactory.getInstance(twitter.getConfiguration());
         SparkConf sparkConf = new SparkConf().setAppName("Tweets-Analysis").setMaster("local[*]");
-        JavaStreamingContext sc = new JavaStreamingContext(sparkConf, new Duration(10000));
+        JavaStreamingContext sc = new JavaStreamingContext(sparkConf, new Duration(1000));
         JavaReceiverInputDStream<Status> tweets = TwitterUtils.createStream(sc, twitterAuth);
         //tweets.print();
+        JavaDStream<Status> z = tweets.map((Function<Status, Status>) s -> s);
         JavaDStream<String> w = tweets.map((Function<Status, String>) Status::getText);
         JavaDStream<String> x = w.filter((Function<String, Boolean>) tweet -> tweet.contains("fuck"));
         //JavaDStream<String> words = tweets.flatMap((FlatMapFunction<Status, String>) s -> Arrays.asList(s.getText().split(" ")).iterator());

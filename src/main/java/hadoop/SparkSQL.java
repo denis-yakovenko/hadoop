@@ -1,12 +1,13 @@
 package hadoop;
 
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import static org.apache.spark.sql.functions.desc;
 
 public class SparkSQL {
     public static void main(String[] args) throws URISyntaxException, IOException {
@@ -15,15 +16,21 @@ public class SparkSQL {
                 .appName("SparkDataSetSample")
                 .master("local[2]")
                 .getOrCreate();
-        FileSystem fs = FileSystem.get(spark.sparkContext().hadoopConfiguration());
-        fs.delete(new Path("sparkOutput"), true);
-        Dataset<String> dataSet = spark
-                .read()
-                .textFile("epldata_final.csv")
-                .cache();
-        long brazilCount = dataSet.filter(s->s.contains("Brazil")).count();
-        System.out.println(brazilCount);
-
+        Dataset<Row> champions = spark.sql("SELECT * FROM csv.`champions.csv`").toDF("country", "wins");
+        /*champions.show();*/
+        Dataset<Row> members = spark.read().option("header", true).csv("epldata_final.csv");
+        /*members
+                .groupBy("nationality")
+                .count()
+                .orderBy(desc("count"))
+                .show();*/
+        champions
+                .join(members, champions.col("country")
+                        .equalTo(members.col("nationality")))
+                .groupBy("wins")
+                .count()
+                .orderBy(desc("count"))
+                .show();
         spark.stop();
     }
 }
